@@ -38,6 +38,7 @@
 - 로그아웃
 
 ## ERD
+<img src="erd/erd.png"/>
 
 ## Version & Dependencies
 
