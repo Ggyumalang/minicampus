@@ -61,17 +61,17 @@ public class MemberDto {
                 .build();
     }
 
-    public String getRegDtText(){
+    public String getRegDtText() {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss");
         return regDt != null ? regDt.format(dateTimeFormatter) : "";
     }
 
-    public String getUpdDtText(){
+    public String getUpdDtText() {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss");
         return updDt != null ? updDt.format(dateTimeFormatter) : "";
     }
 
-    public String getLastLoginDtText(){
+    public String getLastLoginDtText() {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss");
         return lastLoginDt != null ? lastLoginDt.format(dateTimeFormatter) : "";
     }

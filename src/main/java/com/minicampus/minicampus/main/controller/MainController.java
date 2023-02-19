@@ -30,7 +30,7 @@ public class MainController {
     @GetMapping("/images")
     public Resource showImage(String filePath) throws MalformedURLException {
         System.out.println(filePath);
-        return new UrlResource("file:"+ filePath.substring(1));
+        return new UrlResource("file:" + filePath.substring(1));
     }
 
     @RequestMapping("/error/denied")

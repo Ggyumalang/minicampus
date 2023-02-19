@@ -9,6 +9,8 @@ import java.util.List;
 @Mapper
 public interface BannerMapper {
     Long selectListCount(BannerParam parameter);
+
     List<BannerDto> selectList(BannerParam parameter);
+
     List<BannerDto> selectListPost();
 }

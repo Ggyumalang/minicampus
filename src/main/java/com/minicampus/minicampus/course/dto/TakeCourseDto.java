@@ -1,11 +1,8 @@
 package com.minicampus.minicampus.course.dto;
 
-import com.minicampus.minicampus.course.entity.Course;
 import com.minicampus.minicampus.course.entity.TakeCourse;
 import lombok.*;
 
-import java.text.DecimalFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -35,6 +32,7 @@ public class TakeCourseDto {
     //추가컬럼
     Long totalCount;
     Long seq;
+
     public static TakeCourseDto of(TakeCourse takeCourse) {
         return TakeCourseDto.builder()
                 .id(takeCourse.getId())
@@ -46,7 +44,7 @@ public class TakeCourseDto {
                 .build();
     }
 
-    public String getRegDtText(){
+    public String getRegDtText() {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm");
         return regDt != null ? regDt.format(dateTimeFormatter) : "";
     }

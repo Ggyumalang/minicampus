@@ -2,7 +2,6 @@ package com.minicampus.minicampus.course.service.impl;
 
 import com.minicampus.minicampus.course.dto.TakeCourseDto;
 import com.minicampus.minicampus.course.entity.TakeCourse;
-import com.minicampus.minicampus.course.entity.TakeCourseCode;
 import com.minicampus.minicampus.course.mapper.TakeCourseMapper;
 import com.minicampus.minicampus.course.model.ServiceResult;
 import com.minicampus.minicampus.course.model.TakeCourseParam;

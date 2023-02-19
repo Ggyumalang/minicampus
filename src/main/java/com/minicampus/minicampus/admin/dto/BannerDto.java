@@ -29,7 +29,7 @@ public class BannerDto {
     private Long totalCount;
     private Long seq;
 
-    public static BannerDto of(Banner banner){
+    public static BannerDto of(Banner banner) {
         return BannerDto.builder()
                 .id(banner.getId())
                 .subject(banner.getSubject())
@@ -46,7 +46,7 @@ public class BannerDto {
                 .build();
     }
 
-    public String getRegDtText(){
+    public String getRegDtText() {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
         return regDt != null ? regDt.format(dateTimeFormatter) : "";
     }

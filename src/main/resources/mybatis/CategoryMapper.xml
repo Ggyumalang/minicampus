@@ -7,7 +7,7 @@
     <select id="select"
             resultType="com.minicampus.minicampus.admin.dto.CategoryDto">
         select c.*
-             , (select count(*) from course where category_id = c.id) as course_count
+        , (select count(*) from course where category_id = c.id) as course_count
         from category c
         where using_yn = 1
         order by sort_value desc

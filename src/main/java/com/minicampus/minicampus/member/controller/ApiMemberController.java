@@ -1,7 +1,6 @@
 package com.minicampus.minicampus.member.controller;
 
 import com.minicampus.minicampus.common.model.ResponseResult;
-import com.minicampus.minicampus.common.model.ResponseResultHeader;
 import com.minicampus.minicampus.course.dto.TakeCourseDto;
 import com.minicampus.minicampus.course.model.ServiceResult;
 import com.minicampus.minicampus.course.model.TakeCourseInput;
@@ -35,7 +34,7 @@ public class ApiMemberController {
         if (userId == null || userId.equals("") || !takeCourseDto.getUserId().equals(userId)) {
             return ResponseEntity.ok().body(new ResponseResult(false, "본인의 수강 신청 정보만 취소할 수 있습니다."));
         }
-        
+
         //수강 신청 취소 처리
         ServiceResult result = takeCourseService.cancel(parameter.getTakeCourseId());
 

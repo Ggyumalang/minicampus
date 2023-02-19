@@ -2,8 +2,6 @@ package com.minicampus.minicampus.course.model;
 
 import lombok.*;
 
-import java.time.LocalDateTime;
-
 @Getter
 @Setter
 @NoArgsConstructor

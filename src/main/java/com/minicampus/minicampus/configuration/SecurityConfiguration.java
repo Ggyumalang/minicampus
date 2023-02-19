@@ -45,8 +45,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         //토큰 관련 옵션.. crsf
         http.csrf()
-            .ignoringAntMatchers("/member/login")
-            .ignoringAntMatchers("/api/course/req.api");
+                .ignoringAntMatchers("/member/login")
+                .ignoringAntMatchers("/api/course/req.api");
 
         http.csrf().disable();
 
@@ -59,7 +59,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         , "/member/register"
                         , "/member/email-auth"
                         , "/member/find-password"
-                        ,"/member/reset/password"
+                        , "/member/reset/password"
                 )
                 .permitAll();
 
@@ -73,7 +73,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .successHandler(customSuccessHandler)
                 .failureHandler(getFailureHandler())
                 .permitAll();
-        
+
         //로그아웃 설정하는 부분
         http.logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
@@ -89,7 +89,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(memberService)
-            .passwordEncoder(getPasswordEncoder());
+                .passwordEncoder(getPasswordEncoder());
 
         super.configure(auth);
     }

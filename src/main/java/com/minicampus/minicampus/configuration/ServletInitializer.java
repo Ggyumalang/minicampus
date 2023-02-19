@@ -1,5 +1,6 @@
-package com.minicampus.minicampus;
+package com.minicampus.minicampus.configuration;
 
+import com.minicampus.minicampus.MinicampusApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 

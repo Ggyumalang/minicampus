@@ -7,6 +7,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class MemberParam extends CommonParam{
+public class MemberParam extends CommonParam {
     String userId;
 }

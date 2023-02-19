@@ -12,6 +12,7 @@ public interface CourseService {
 
     /**
      * 강좌 등록
+     *
      * @param parameter
      * @return
      */
@@ -19,6 +20,7 @@ public interface CourseService {
 
     /**
      * 강좌 정보 수정
+     *
      * @param parameter
      * @return
      */
@@ -26,6 +28,7 @@ public interface CourseService {
 
     /**
      * 강좌 목록 조회
+     *
      * @param courseParam
      * @return
      */
@@ -33,6 +36,7 @@ public interface CourseService {
 
     /**
      * 강좌 상세 정보
+     *
      * @param id
      * @return
      */
@@ -40,6 +44,7 @@ public interface CourseService {
 
     /**
      * 강좌 내용 삭제
+     *
      * @param idList
      * @return
      */
@@ -53,6 +58,7 @@ public interface CourseService {
     /**
      * 프론트 강좌 상세 정보
      * 프론트 = 회원이 보는 화면
+     *
      * @param id
      * @return
      */
@@ -65,6 +71,7 @@ public interface CourseService {
 
     /**
      * 전체 강좌 목록
+     *
      * @return
      */
     List<CourseDto> listAll();

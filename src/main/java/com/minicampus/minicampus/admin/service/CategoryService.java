@@ -9,12 +9,14 @@ public interface CategoryService {
 
     /**
      * 전체 카테고리 정보 가져오기
+     *
      * @return
      */
     List<CategoryDto> list();
 
     /**
      * 카테고리 신규 추가
+     *
      * @param categoryName
      * @return
      */
@@ -22,6 +24,7 @@ public interface CategoryService {
 
     /**
      * 카테고리 수정
+     *
      * @param parameter
      * @return
      */
@@ -29,6 +32,7 @@ public interface CategoryService {
 
     /**
      * 카테고리 삭제
+     *
      * @param id
      * @return
      */
@@ -36,6 +40,7 @@ public interface CategoryService {
 
     /**
      * 프론트 카테고리 정보
+     *
      * @param parameter
      * @return
      */

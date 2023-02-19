@@ -2,7 +2,6 @@ package com.minicampus.minicampus.member.service;
 
 import com.minicampus.minicampus.admin.dto.LoginHistoryDto;
 import com.minicampus.minicampus.admin.dto.MemberDto;
-import com.minicampus.minicampus.admin.entity.LoginHistory;
 import com.minicampus.minicampus.admin.model.MemberParam;
 import com.minicampus.minicampus.course.model.ServiceResult;
 import com.minicampus.minicampus.member.model.MemberInput;
@@ -102,13 +101,15 @@ public interface MemberService extends UserDetailsService {
 
     /**
      * 회원 탈퇴 기능
+     *
      * @param userId
      * @return
      */
-    ServiceResult withdraw(String userId , String password);
+    ServiceResult withdraw(String userId, String password);
 
     /**
      * 각 사용자들의 로그인 접속 목록
+     *
      * @return
      */
     List<LoginHistoryDto> getLogInfo(String userId);

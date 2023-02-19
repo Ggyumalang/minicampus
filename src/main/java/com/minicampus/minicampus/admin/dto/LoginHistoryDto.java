@@ -18,7 +18,7 @@ public class LoginHistoryDto {
     private String clientIp;
     private String userAgent;
 
-    public static LoginHistoryDto of(LoginHistory loginHistory){
+    public static LoginHistoryDto of(LoginHistory loginHistory) {
         return LoginHistoryDto.builder()
                 .id(loginHistory.getId())
                 .userId(loginHistory.getUserId())
@@ -28,7 +28,7 @@ public class LoginHistoryDto {
                 .build();
     }
 
-    public String getLoggedDtText(){
+    public String getLoggedDtText() {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss");
         return loggedDt != null ? loggedDt.format(dateTimeFormatter) : "";
     }

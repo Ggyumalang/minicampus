@@ -1,10 +1,6 @@
 package com.minicampus.minicampus.admin.model;
 
-import com.minicampus.minicampus.admin.entity.Banner;
 import lombok.*;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 @Getter
 @Setter
