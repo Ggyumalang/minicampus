@@ -7,16 +7,13 @@ import com.minicampus.minicampus.course.service.TakeCourseService;
 import com.minicampus.minicampus.member.model.MemberInput;
 import com.minicampus.minicampus.member.model.ResetPasswordInput;
 import com.minicampus.minicampus.member.service.MemberService;
-import com.minicampus.minicampus.util.PasswordUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.support.RequestContextUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
@@ -116,8 +113,8 @@ public class MemberController {
         parameter.setUserId(principal.getName());
         ServiceResult result = memberService.updateMember(parameter);
 
-        if(!result.getResult()){
-            model.addAttribute("errorMessage" , result.getMessage());
+        if (!result.getResult()) {
+            model.addAttribute("errorMessage", result.getMessage());
             return "common/error";
         }
 
@@ -137,8 +134,8 @@ public class MemberController {
     ) {
         parameter.setUserId(principal.getName());
         ServiceResult result = memberService.updateMemberPassword(parameter);
-        if(!result.getResult()){
-            model.addAttribute("errorMessage" , result.getMessage());
+        if (!result.getResult()) {
+            model.addAttribute("errorMessage", result.getMessage());
             return "common/error";
         }
 
@@ -202,7 +199,7 @@ public class MemberController {
 
         ServiceResult result = memberService.withdraw(userId, parameter.getPassword());
 
-        if(!result.getResult()){
+        if (!result.getResult()) {
             model.addAttribute("errorMessage", result.getMessage());
             return "common/error";
         }

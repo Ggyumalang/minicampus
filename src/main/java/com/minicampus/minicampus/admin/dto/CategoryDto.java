@@ -21,7 +21,7 @@ public class CategoryDto {
     //추가된 컬럼
     Integer courseCount;
 
-    public static CategoryDto of(Category category){
+    public static CategoryDto of(Category category) {
         return CategoryDto.builder()
                 .id(category.getId())
                 .categoryName(category.getCategoryName())

@@ -2,12 +2,10 @@ package com.minicampus.minicampus.admin.controller;
 
 import com.minicampus.minicampus.admin.dto.LoginHistoryDto;
 import com.minicampus.minicampus.admin.dto.MemberDto;
-import com.minicampus.minicampus.admin.entity.LoginHistory;
 import com.minicampus.minicampus.admin.model.MemberInput;
 import com.minicampus.minicampus.admin.model.MemberParam;
 import com.minicampus.minicampus.course.controller.BaseController;
 import com.minicampus.minicampus.member.service.MemberService;
-import com.minicampus.minicampus.util.PageUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -56,21 +54,21 @@ public class AdminMemberController extends BaseController {
         List<LoginHistoryDto> logInfoList =
                 memberService.getLogInfo(memberParam.getUserId());
 
-        model.addAttribute("logInfoList" , logInfoList);
+        model.addAttribute("logInfoList", logInfoList);
 
         return "admin/member/detail";
     }
 
     @PostMapping("/admin/member/status.do")
-    public String status(Model model , MemberInput parameter){
-        boolean result = memberService.updateStatus(parameter.getUserId() , parameter.getUserStatus());
+    public String status(Model model, MemberInput parameter) {
+        boolean result = memberService.updateStatus(parameter.getUserId(), parameter.getUserStatus());
         return "redirect:/admin/member/detail.do?userId=" + parameter.getUserId();
     }
 
     @PostMapping("/admin/member/password.do")
-    public String password(Model model , MemberInput parameter){
+    public String password(Model model, MemberInput parameter) {
         boolean result = memberService.updatePassword(
-                parameter.getUserId() , parameter.getPassword()
+                parameter.getUserId(), parameter.getPassword()
         );
         return "redirect:/admin/member/detail.do?userId=" + parameter.getUserId();
     }

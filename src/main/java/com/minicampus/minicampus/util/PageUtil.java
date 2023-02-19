@@ -91,7 +91,7 @@ public class PageUtil {
         sb.append(String.format("<a href='?pageIndex=%d%s'>&lt;</a>", previousPageIndex, addQueryString));
         sb.append(System.lineSeparator());
 
-        for(long i = startPage; i<= endPage; i++) {
+        for (long i = startPage; i <= endPage; i++) {
             if (i == pageIndex) {
                 sb.append(String.format("<a class='on' href='?pageIndex=%d%s'>%d</a>", i, addQueryString, i));
             } else {
@@ -121,7 +121,7 @@ public class PageUtil {
         }
 
         //전체 블럭개수 올림..
-        totalBlockCount = (totalCount + pageSize -1) / pageSize;
+        totalBlockCount = (totalCount + pageSize - 1) / pageSize;
 
         //현재 시작페이지번호
         startPage = ((pageIndex - 1) / pageBlockSize) * pageBlockSize + 1;

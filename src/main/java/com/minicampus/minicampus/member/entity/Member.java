@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 @Entity
-public class Member implements MemberCode{
+public class Member implements MemberCode {
 
     @Id
     private String userId;

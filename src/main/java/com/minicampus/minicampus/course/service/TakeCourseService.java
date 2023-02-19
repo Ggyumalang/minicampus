@@ -15,6 +15,7 @@ public interface TakeCourseService {
 
     /**
      * 수강 상태 변경
+     *
      * @param id
      * @param status
      * @return
@@ -23,6 +24,7 @@ public interface TakeCourseService {
 
     /**
      * 내 수강내역 목록
+     *
      * @param userId
      * @return
      */
@@ -30,6 +32,7 @@ public interface TakeCourseService {
 
     /**
      * 수강 상세 정보
+     *
      * @param id
      * @return
      */
@@ -37,6 +40,7 @@ public interface TakeCourseService {
 
     /**
      * 수강신청 취소
+     *
      * @param id
      * @return
      */

@@ -22,7 +22,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -93,10 +92,10 @@ public class MemberServiceImpl implements MemberService {
         if (!optionalMember.isPresent()) {
             return false;
         }
-        
+
         Member member = optionalMember.get();
-        
-        if(member.getEmailAuthYn()){
+
+        if (member.getEmailAuthYn()) {
             //이미 활성화가 되었기 때문에
             return false;
         }
@@ -113,7 +112,7 @@ public class MemberServiceImpl implements MemberService {
 
         Optional<Member> optionalMember = memberRepository
                 .findByUserIdAndUserName(parameter.getUserId(), parameter.getUserName());
-        if(!optionalMember.isPresent()){
+        if (!optionalMember.isPresent()) {
             throw new UsernameNotFoundException("회원 정보가 존재하지 않습니다.");
         }
         Member member = optionalMember.get();
@@ -144,11 +143,11 @@ public class MemberServiceImpl implements MemberService {
         Member member = optionalMember.get();
 
         //초기화 날짜가 유효한 지 체크
-        if(member.getResetPasswordLimitDt() == null){
+        if (member.getResetPasswordLimitDt() == null) {
             throw new RuntimeException(" 유효한 날짜가 아닙니다. ");
         }
 
-        if(member.getResetPasswordLimitDt().isBefore(LocalDateTime.now())){
+        if (member.getResetPasswordLimitDt().isBefore(LocalDateTime.now())) {
             throw new RuntimeException(" 유효한 날짜가 아닙니다. ");
         }
 
@@ -171,11 +170,11 @@ public class MemberServiceImpl implements MemberService {
         Member member = optionalMember.get();
 
         //초기화 날짜가 유효한 지 체크
-        if(member.getResetPasswordLimitDt() == null){
+        if (member.getResetPasswordLimitDt() == null) {
             throw new RuntimeException(" 유효한 날짜가 아닙니다. ");
         }
 
-        if(member.getResetPasswordLimitDt().isBefore(LocalDateTime.now())){
+        if (member.getResetPasswordLimitDt().isBefore(LocalDateTime.now())) {
             throw new RuntimeException(" 유효한 날짜가 아닙니다. ");
         }
 
@@ -195,18 +194,18 @@ public class MemberServiceImpl implements MemberService {
         long totalCount = memberMapper.selectListCount(memberParam);
         List<MemberDto> list = memberMapper.selectList(memberParam);
 
-        if(!CollectionUtils.isEmpty(list)){
+        if (!CollectionUtils.isEmpty(list)) {
             int i = 1;
-            for(MemberDto dto : list){
+            for (MemberDto dto : list) {
                 dto.setTotalCount(totalCount);
                 System.out.println(dto.getUserId());
                 LoginHistory history = loginHistoryRepository
                         .findFirstByUserIdOrderByLoggedDtDesc(dto.getUserId())
                         .orElse(null);
-                if(history != null){
+                if (history != null) {
                     dto.setLastLoginDt(history.getLoggedDt());
                 }
-                dto.setSeq(memberParam.getPageStart()+i);
+                dto.setSeq(memberParam.getPageStart() + i);
                 i++;
             }
         }
@@ -247,15 +246,15 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public ServiceResult withdraw(String userId , String password) {
+    public ServiceResult withdraw(String userId, String password) {
 
         Optional<Member> optionalMember = memberRepository.findById(userId);
-        if(!optionalMember.isPresent()){
+        if (!optionalMember.isPresent()) {
             return new ServiceResult(false, "회원 정보가 존재하지 않습니다.");
         }
         Member member = optionalMember.get();
 
-        if(!PasswordUtils.equals(password, member.getPassword())) {
+        if (!PasswordUtils.equals(password, member.getPassword())) {
             return new ServiceResult(false, "비밀번호가 일치하지 않습니다.");
         }
 
@@ -283,12 +282,12 @@ public class MemberServiceImpl implements MemberService {
     public ServiceResult updateMemberPassword(MemberInput parameter) {
 
         Optional<Member> optionalMember = memberRepository.findById(parameter.getUserId());
-        if(!optionalMember.isPresent()){
-           return new ServiceResult(false, "회원 정보가 존재하지 않습니다.");
+        if (!optionalMember.isPresent()) {
+            return new ServiceResult(false, "회원 정보가 존재하지 않습니다.");
         }
         Member member = optionalMember.get();
 
-        if(!PasswordUtils.equals(parameter.getPassword(), member.getPassword())) {
+        if (!PasswordUtils.equals(parameter.getPassword(), member.getPassword())) {
             return new ServiceResult(false, "비밀번호가 일치하지 않습니다.");
         }
 
@@ -301,8 +300,8 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public ServiceResult updateMember(MemberInput parameter) {
         Optional<Member> optionalMember = memberRepository.findById(parameter.getUserId());
-        if(!optionalMember.isPresent()){
-            return new ServiceResult(false , "회원 정보가 존재하지 않습니다.");
+        if (!optionalMember.isPresent()) {
+            return new ServiceResult(false, "회원 정보가 존재하지 않습니다.");
         }
 
         Member member = optionalMember.get();
@@ -314,7 +313,7 @@ public class MemberServiceImpl implements MemberService {
         member.setUpdDt(LocalDateTime.now());
         memberRepository.save(member);
 
-        return new ServiceResult(true,"");
+        return new ServiceResult(true, "");
     }
 
     @Override
@@ -329,23 +328,23 @@ public class MemberServiceImpl implements MemberService {
         Member member = optionalMember.get();
 
         //이메일 활성화가 되지 않았으면..
-        if(Member.MEMBER_STATUS_REQ.equals(member.getUserStatus())
-            && !member.getEmailAuthYn()){
+        if (Member.MEMBER_STATUS_REQ.equals(member.getUserStatus())
+                && !member.getEmailAuthYn()) {
             throw new MemberNotEmailAuthException("이메일 활성화 이후에 로그인 해주세요");
         }
 
-        if(Member.MEMBER_STATUS_STOP.equals(member.getUserStatus())){
+        if (Member.MEMBER_STATUS_STOP.equals(member.getUserStatus())) {
             throw new MemberStopUserException("정지된 회원입니다.");
         }
 
-        if(Member.MEMBER_STATUS_WITHDRAW.equals(member.getUserStatus())){
+        if (Member.MEMBER_STATUS_WITHDRAW.equals(member.getUserStatus())) {
             throw new MemberStopUserException("탈퇴된 회원입니다.");
         }
 
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
         grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 
-        if(member.getAdminYn()){
+        if (member.getAdminYn()) {
             grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
         }
 

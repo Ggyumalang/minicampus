@@ -7,28 +7,17 @@ import com.minicampus.minicampus.admin.model.BannerInput;
 import com.minicampus.minicampus.admin.model.BannerParam;
 import com.minicampus.minicampus.admin.repository.BannerRepository;
 import com.minicampus.minicampus.admin.service.BannerService;
-import com.minicampus.minicampus.course.dto.CourseDto;
 import com.minicampus.minicampus.course.entity.Course;
-import com.minicampus.minicampus.course.entity.TakeCourse;
-import com.minicampus.minicampus.course.mapper.CourseMapper;
-import com.minicampus.minicampus.course.model.CourseInput;
-import com.minicampus.minicampus.course.model.CourseParam;
 import com.minicampus.minicampus.course.model.ServiceResult;
-import com.minicampus.minicampus.course.model.TakeCourseInput;
 import com.minicampus.minicampus.course.repository.CourseRepository;
-import com.minicampus.minicampus.course.repository.TakeCourseRepository;
-import com.minicampus.minicampus.course.service.CourseService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -44,7 +33,7 @@ public class BannerServiceImpl implements BannerService {
     @Override
     public ServiceResult add(BannerInput parameter) {
         Optional<Course> optionalCourse = courseRepository.findById(parameter.getCourseId());
-        if(!optionalCourse.isPresent()){
+        if (!optionalCourse.isPresent()) {
             return new ServiceResult(false, "해당 강좌가 존재하지 않습니다.");
         }
 
@@ -53,7 +42,7 @@ public class BannerServiceImpl implements BannerService {
          * courseId를 추가해주는 로직
          */
         String path = parameter.getClickedPath();
-        if("/course/".equals(path)){
+        if ("/course/".equals(path)) {
             path += parameter.getCourseId();
         }
 
@@ -72,18 +61,18 @@ public class BannerServiceImpl implements BannerService {
                         .regDt(LocalDateTime.now())
                         .build()
         );
-        return new ServiceResult(true,"");
+        return new ServiceResult(true, "");
     }
 
     @Override
     public ServiceResult set(BannerInput parameter) {
         Optional<Banner> optionalBanner = bannerRepository.findById(parameter.getId());
-        if(!optionalBanner.isPresent()){
+        if (!optionalBanner.isPresent()) {
             return new ServiceResult(false, "배너 정보가 존재하지 않습니다.");
         }
 
         Optional<Course> optionalCourse = courseRepository.findById(parameter.getCourseId());
-        if(!optionalCourse.isPresent()){
+        if (!optionalCourse.isPresent()) {
             return new ServiceResult(false, "해당 강좌가 존재하지 않습니다.");
         }
 
@@ -92,7 +81,7 @@ public class BannerServiceImpl implements BannerService {
          * courseId를 추가해주는 로직
          */
         String path = parameter.getClickedPath();
-        if("/course/".equals(path)){
+        if ("/course/".equals(path)) {
             path += parameter.getCourseId();
         }
 
@@ -111,7 +100,7 @@ public class BannerServiceImpl implements BannerService {
 
         bannerRepository.save(banner);
 
-        return new ServiceResult(true,"");
+        return new ServiceResult(true, "");
     }
 
     @Override
@@ -143,17 +132,17 @@ public class BannerServiceImpl implements BannerService {
 
     @Override
     public Boolean del(String idList) {
-        if(idList != null && idList.length() > 0){
-            for(String id : idList.split(",")){
+        if (idList != null && idList.length() > 0) {
+            for (String id : idList.split(",")) {
                 Long _id = 0L;
 
-                try{
+                try {
                     _id = Long.parseLong(id);
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 
-                if(_id > 0) {
+                if (_id > 0) {
                     bannerRepository.deleteById(_id);
                 }
             }

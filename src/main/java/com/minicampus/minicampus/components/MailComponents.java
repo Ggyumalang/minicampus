@@ -18,7 +18,7 @@ public class MailComponents {
 
     private final JavaMailSender javaMailSender;
 
-    public void sendMailTest(){
+    public void sendMailTest() {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo("khg50877@gamil.com");
         message.setSubject("안녕하세요. 테스트입니다.");
@@ -27,14 +27,14 @@ public class MailComponents {
         javaMailSender.send(message);
     }
 
-    public boolean sendMail(String email , String subject , String text){
+    public boolean sendMail(String email, String subject, String text) {
 
         boolean result = false;
 
         MimeMessagePreparator msg = new MimeMessagePreparator() {
             @Override
             public void prepare(MimeMessage mimeMessage) throws Exception {
-                MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true , "UTF-8");
+                MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
                 mimeMessageHelper.setTo(email);
                 mimeMessageHelper.setSubject(subject);
                 mimeMessageHelper.setText(text, true); //HTML 사용 가능!

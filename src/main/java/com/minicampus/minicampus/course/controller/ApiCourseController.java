@@ -2,7 +2,6 @@ package com.minicampus.minicampus.course.controller;
 
 
 import com.minicampus.minicampus.common.model.ResponseResult;
-import com.minicampus.minicampus.common.model.ResponseResultHeader;
 import com.minicampus.minicampus.course.model.ServiceResult;
 import com.minicampus.minicampus.course.model.TakeCourseInput;
 import com.minicampus.minicampus.course.service.CourseService;

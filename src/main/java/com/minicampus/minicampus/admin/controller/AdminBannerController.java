@@ -11,28 +11,19 @@ import com.minicampus.minicampus.course.service.CourseService;
 import com.minicampus.minicampus.util.FileUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.util.List;
-import java.util.Objects;
 
 @Controller
 @RequiredArgsConstructor
@@ -112,21 +103,21 @@ public class AdminBannerController extends BaseController {
             String originalFileName = file.getOriginalFilename();
             boolean isFileSame = false;
 
-            if(editMode){
+            if (editMode) {
                 System.out.println("origin >> " + originalFileName);
                 BannerDto bannerDto = bannerService.getById(parameter.getId());
                 String exFileName = bannerDto.getUrlFileName();
                 System.out.println("ex >> " + exFileName);
                 int dotPos = exFileName.lastIndexOf(".");
-                if(originalFileName == null || originalFileName.equals("")
-                    || (dotPos > 0 && (originalFileName).equals(exFileName.substring(0,dotPos)))){
+                if (originalFileName == null || originalFileName.equals("")
+                        || (dotPos > 0 && (originalFileName).equals(exFileName.substring(0, dotPos)))) {
                     originalFileName = exFileName;
                     isFileSame = true;
                     parameter.setFileName(bannerDto.getFileName());
                     parameter.setUrlFileName(bannerDto.getUrlFileName());
                 }
             }
-            if(!isFileSame){
+            if (!isFileSame) {
                 String baseLocalPath = "/Users/a/Desktop/Spring파일/minicampus/minicampus/files";
                 String baseUrlPath = "/files";
                 String[] arrFileName = FileUtil.getNewSaveFile(baseLocalPath, baseUrlPath, originalFileName);

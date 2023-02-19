@@ -30,11 +30,11 @@ public class CommonParam {
     }
 
     public void init() {
-        if(pageIndex == null || pageIndex < 1) {
+        if (pageIndex == null || pageIndex < 1) {
             pageIndex = 1L;
         }
 
-        if(pageSize == null || pageSize < 1) {
+        if (pageSize == null || pageSize < 1) {
             pageSize = 10L;
         }
 
@@ -43,12 +43,12 @@ public class CommonParam {
     public String getQueryString() {
         init();
         StringBuilder sb = new StringBuilder();
-        if(searchType != null && searchType.length() > 0){
+        if (searchType != null && searchType.length() > 0) {
             sb.append(String.format("searchType=%s", searchType));
         }
 
-        if(searchValue != null && searchValue.length() > 0){
-            if(sb.length() > 0) {
+        if (searchValue != null && searchValue.length() > 0) {
+            if (sb.length() > 0) {
                 sb.append("&");
             }
             sb.append(String.format("searchValue=%s", searchValue));
