@@ -160,8 +160,16 @@ public class AdminBannerController extends BaseController {
     }
 
     @PostMapping("/admin/banner/delete.do")
-    public String del(BannerInput parameter) {
+    public String del(
+            BannerInput parameter
+            , Model model
+    ) {
         Boolean result = bannerService.del(parameter.getIdList());
+        if(!result){
+            //error처리
+            model.addAttribute("errorMessage", "배너 삭제가 정상적으로 이뤄지지 않았습니다. (아이디가 잘못되었습니다.)");
+            return "common/error";
+        }
         return "redirect:/admin/banner/list.do";
     }
 

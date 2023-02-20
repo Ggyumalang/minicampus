@@ -134,12 +134,13 @@ public class BannerServiceImpl implements BannerService {
     public Boolean del(String idList) {
         if (idList != null && idList.length() > 0) {
             for (String id : idList.split(",")) {
-                Long _id = 0L;
+                long _id = 0;
 
                 try {
                     _id = Long.parseLong(id);
                 } catch (Exception e) {
                     e.printStackTrace();
+                    return false;
                 }
 
                 if (_id > 0) {
