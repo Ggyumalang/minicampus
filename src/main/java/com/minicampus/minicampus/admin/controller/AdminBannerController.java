@@ -94,7 +94,7 @@ public class AdminBannerController extends BaseController {
 
         String saveFileName = "";
         String urlFileName = "";
-        Boolean editMode = request.getRequestURI().contains("/edit.do");
+        boolean editMode = request.getRequestURI().contains("/edit.do");
 
         if (file != null) {
             /**
@@ -104,10 +104,8 @@ public class AdminBannerController extends BaseController {
             boolean isFileSame = false;
 
             if (editMode) {
-                System.out.println("origin >> " + originalFileName);
                 BannerDto bannerDto = bannerService.getById(parameter.getId());
                 String exFileName = bannerDto.getUrlFileName();
-                System.out.println("ex >> " + exFileName);
                 int dotPos = exFileName.lastIndexOf(".");
                 if (originalFileName == null || originalFileName.equals("")
                         || (dotPos > 0 && (originalFileName).equals(exFileName.substring(0, dotPos)))) {
